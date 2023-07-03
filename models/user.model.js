@@ -16,6 +16,8 @@ let UsersSchema = new Schema(
     imagePath: { type: String, required: false },
     otp: { type: String, required: false },
     emailVerified: { type: Boolean, required: false },
+    tempMail: { type: String, required: false },
+    tempMailVerified: { type: Boolean, required: false },
     subscription: {
       type: Schema.Types.ObjectId,
       ref: "subscriptions",

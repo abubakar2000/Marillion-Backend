@@ -1,5 +1,5 @@
 {
-    "url": "mongodb://localhost:27017/Marillion",
+    "url": "mongodb://127.0.0.1:27017/Marillion",
     "secret": "Marillion",
     "email": "greenappafrica@gmail.com",
     "keyg": "wqatlfayvcakbkas"

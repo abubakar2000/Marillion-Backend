@@ -7,6 +7,7 @@ var dbConfig = require("./config/config.json");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var subscriptionRouter = require("./routes/subscription");
+var deviceRouter = require("./routes/device");
 var mongoose = require("mongoose");
 var app = express();
 
@@ -40,6 +41,7 @@ mongoose
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/subscription", subscriptionRouter);
+app.use("/api/device", deviceRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
