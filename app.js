@@ -9,6 +9,7 @@ var usersRouter = require("./routes/users");
 var subscriptionRouter = require("./routes/subscription");
 var deviceRouter = require("./routes/device");
 var mongoose = require("mongoose");
+var cors = require("cors");
 var app = express();
 
 // view engine setup
@@ -17,6 +18,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 app.use(express.static(path.join(__dirname, "public")));
 
 mongoose

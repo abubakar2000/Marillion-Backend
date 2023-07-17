@@ -6,13 +6,10 @@ const { randomString } = require("../utils/utils");
 
 const create = async (req, res) => {
   console.log(req.body);
-
   const newUser = userModel({
     ...req.body,
   });
-
   const response = await newUser.save();
-
   res.send(response);
 };
 
@@ -25,6 +22,14 @@ const update = async (req, res) => {
     },
     { upsert: true }
   );
+  res.send(response);
+};
+
+const remove = async (req, res) => {
+  console.log("CALLED", req.params.email);
+  const response = await userModel.deleteOne({
+    email: req.params.email,
+  });
   res.send(response);
 };
 
@@ -49,6 +54,13 @@ const login = async (req, res) => {
   res.send({
     error: false,
     message: response,
+  });
+};
+
+const count = async (req, res) => {
+  const response = await userModel.count();
+  res.send({
+    data: response,
   });
 };
 
@@ -350,6 +362,11 @@ const updateUser = async (req, res) => {
   res.send(response);
 };
 
+const findAll = async (req, res) => {
+  const response = await userModel.find();
+  res.send(response);
+};
+
 module.exports = {
   create,
   login,
@@ -363,4 +380,7 @@ module.exports = {
   verifyNewEmail,
   updatePasswordWithOldPassword,
   updateUser,
+  findAll,
+  remove,
+  count,
 };
