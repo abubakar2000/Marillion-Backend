@@ -26,7 +26,7 @@ const Login = () => {
             alert("Wrong Password");
           }
         }}
-        className="xl:w-[60%] md:w-[75%] w-[95%] bg-white rounded-md p-3 flex flex-col gap-3"
+        className="max-w-[450pt] xl:w-[60%] md:w-[75%] w-[95%] bg-white rounded-md p-3 flex flex-col gap-3"
       >
         <div className="text-3xl">Login</div>
         <input
