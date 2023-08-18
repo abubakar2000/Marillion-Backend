@@ -8,6 +8,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var subscriptionRouter = require("./routes/subscription");
 var deviceRouter = require("./routes/device");
+var creditRouter = require("./routes/creditrecorditem");
 var mongoose = require("mongoose");
 var cors = require("cors");
 var app = express();
@@ -44,6 +45,7 @@ app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/subscription", subscriptionRouter);
 app.use("/api/device", deviceRouter);
+app.use("/api/credits", creditRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

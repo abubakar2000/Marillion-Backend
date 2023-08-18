@@ -7,10 +7,12 @@ const {
   remove,
   countRegion,
   calculate,
+  calculateAll,
 } = require("../controller/device.controller");
 
 const router = require("express").Router();
 
+router.post("/calculateall", calculateAll);
 router.post("/calculate", calculate);
 router.post("/lookup", find);
 router.put("/", update);

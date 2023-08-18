@@ -45,6 +45,34 @@ const calculate = async (req, res) => {
     return error;
   }
 };
+
+const calculateAll = async (req, res) => {
+  console.log("HIT");
+  let totalCarbonsSoFar = 0;
+  const responseArray = await deviceModel.find();
+
+  for (let index = 0; index < responseArray.length; index++) {
+    const newDevice = responseArray[index];
+
+    const totalkWhGeneratedPerYear =
+      (newDevice.deviceSize ?? 0) *
+      0.174 *
+      (newDevice.device_type === "Hot Water Geyser"
+        ? newDevice.numberOfOccupants
+        : newDevice.powerOutputOfSolarPanel ?? 0) *
+      0.85 *
+      newDevice.solarRadiationFactor;
+
+    console.log(newDevice);
+    const info = resolveRegionInfo(newDevice.region);
+    console.log(info);
+    const carbonSavings = totalkWhGeneratedPerYear * info.cif;
+    totalCarbonsSoFar += carbonSavings;
+  }
+  res.send({
+    data: totalCarbonsSoFar,
+  });
+};
 const find = async (req, res) => {
   try {
     const newDevice = await deviceModel.find({
@@ -142,6 +170,7 @@ const countRegion = async (req, res) => {
   }
 };
 module.exports = {
+  calculateAll,
   calculate,
   find,
   update,
