@@ -1,17 +1,17 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import { AuthRoutes, Routes } from "../constants/Routes.tsx";
 
-const appRouter = createBrowserRouter(Routes);
-const authRouter = createBrowserRouter(AuthRoutes);
+const appRouter = createHashRouter(Routes);
+const authRouter = createHashRouter(AuthRoutes);
 
 interface Props {
-  isLoggedIn?: boolean;
+  isLoggedIn?: string;
 }
 
 export const AppRouter = ({ isLoggedIn }: Props) => {
   return (
     <div>
-      <RouterProvider router={!isLoggedIn ? appRouter : authRouter} />
+      <RouterProvider router={isLoggedIn ? appRouter : authRouter} />
     </div>
   );
 };

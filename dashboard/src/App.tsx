@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <ToastContainer />
-      <AppRouter />
+      <AppRouter isLoggedIn={localStorage.getItem("token") ?? ""} />
     </div>
   );
 }
