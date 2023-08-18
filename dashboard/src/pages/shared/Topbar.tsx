@@ -1,5 +1,3 @@
-import clsx from "clsx";
-
 interface TobparProps {
   label?: string;
   button?: string | JSX.Element | JSX.Element[];

@@ -1,4 +1,4 @@
-import { Card, Typography } from "@material-tailwind/react";
+import { Card } from "@material-tailwind/react";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 
