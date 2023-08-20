@@ -205,7 +205,7 @@ const verify = async (req, res) => {
       },
     }
   );
-  if (response?.emailVerified) {
+  if (response.emailVerified) {
     res.send({
       error: false,
       message: "Email already verified",
