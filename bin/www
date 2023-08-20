@@ -9,6 +9,7 @@ var app = require("../app");
 var debug = require("debug")("api:server");
 var http = require("http");
 var https = require("https");
+const path = require("path");
 
 /**
  * Get port from environment and store in Express.
@@ -23,36 +24,28 @@ app.set("port", port);
 
 var server = http.createServer(app);
 
-console.log("DIRECTORY");
-console.log(__dirname);
-console.log(readFileSync("."));
+var privateKey = readFileSync(path.join(__dirname, "./secrets/privkey1.pem"));
+var certificate = readFileSync(path.join(__dirname, "./secrets/cert1.pem"));
 
-// var privateKey = readFileSync(
-//   "/etc/letsencrypt/live/apps.marillionex.com/privkey.pem"
-// );
-// var certificate = readFileSync(
-//   "/etc/letsencrypt/live/apps.marillionex.com/fullchain.pem"
-// );
-
-// var sslServer = https.createServer(
-//   {
-//     cert: certificate,
-//     key: privateKey,
-//   },
-//   app
-// );
+var sslServer = https.createServer(
+  {
+    cert: certificate,
+    key: privateKey,
+  },
+  app
+);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-// sslServer.listen(port);
-// sslServer.on("error", onError);
-// sslServer.on("listening", onListening);
+sslServer.listen(port);
+sslServer.on("error", onError);
+sslServer.on("listening", onListening);
 
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
+// server.listen(port);
+// server.on("error", onError);
+// server.on("listening", onListening);
 
 /**
  * Normalize a port into a number, string, or false.
