@@ -39,9 +39,15 @@ var sslServer = https.createServer(
  * Listen on provided port, on all network interfaces.
  */
 
-sslServer.listen(port);
+sslServer.listen(1337);
 sslServer.on("error", onError);
 sslServer.on("listening", onListening);
+
+sslServer.addListener("listening", () => {
+  console.log("MARILLION SERVER STARTED...");
+  console.log(sslServer.address().address);
+  console.log(sslServer.address().port);
+});
 
 // server.listen(port);
 // server.on("error", onError);
