@@ -24,34 +24,33 @@ app.set("port", port);
 
 var server = http.createServer(app);
 
-var privateKey = readFileSync(path.join(__dirname, "./secrets/privkey1.pem"));
-var certificate = readFileSync(path.join(__dirname, "./secrets/cert1.pem"));
+// var privateKey = readFileSync(path.join(__dirname, "./secrets/privkey1.pem"));
+// var certificate = readFileSync(path.join(__dirname, "./secrets/cert1.pem"));
 
-var sslServer = https.createServer(
-  {
-    cert: certificate,
-    key: privateKey,
-  },
-  app
-);
+// var sslServer = https.createServer(
+//   {
+//     cert: certificate,
+//     key: privateKey,
+//   },
+//   app
+// );
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-sslServer.listen(1337);
-sslServer.on("error", onError);
-sslServer.on("listening", onListening);
+// sslServer.listen(1337);
+// sslServer.on("error", onError);
+// sslServer.on("listening", onListening);
+// sslServer.addListener("listening", () => {
+//   console.log("MARILLION SERVER STARTED...");
+//   console.log(sslServer.address().address);
+//   console.log(sslServer.address().port);
+// });
 
-sslServer.addListener("listening", () => {
-  console.log("MARILLION SERVER STARTED...");
-  console.log(sslServer.address().address);
-  console.log(sslServer.address().port);
-});
-
-// server.listen(1337);
-// server.on("error", onError);
-// server.on("listening", onListening);
+server.listen(1337);
+server.on("error", onError);
+server.on("listening", onListening);
 
 /**
  * Normalize a port into a number, string, or false.

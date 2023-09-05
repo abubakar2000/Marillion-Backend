@@ -5,12 +5,30 @@ const { sendMail } = require("../services/mailer.service");
 const { randomString } = require("../utils/utils");
 
 const create = async (req, res) => {
-  console.log(req.body);
+  const ifExists = await userModel.findOne({
+    email: req.body.email,
+  });
+
+  if (ifExists !== null) {
+    console.log("SENDING", {
+      ...ifExists,
+      password: "",
+    });
+    res.send({
+      ...ifExists["_doc"],
+      password: "",
+    });
+    return;
+  }
+
   const newUser = userModel({
     ...req.body,
   });
   const response = await newUser.save();
-  res.send(response);
+  res.send({
+    ...response["_id"],
+    password: "",
+  });
 };
 
 const update = async (req, res) => {
